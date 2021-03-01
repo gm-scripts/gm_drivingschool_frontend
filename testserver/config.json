@@ -1,0 +1,12 @@
+{
+  "colors": {
+    "backgroundPrimary": "#373737",
+    "backgroundSecondary": "#232323",
+    "colorPrimary": "#23bf7c",
+    "colorSecondary": "#299465",
+    "colorCorrect": "#33cc33",
+    "colorFalse": "#cc3333",
+    "textPrimary": "#f7f7f7",
+    "textSecondary": "#dfdfdf"
+  }
+}

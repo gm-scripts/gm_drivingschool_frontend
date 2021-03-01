@@ -5,14 +5,18 @@
       <div id="camera-outer">
         <div id="camera-inner"></div>
       </div>
-      <router-view id="display"></router-view>
+      <Display></Display>
     </div>
   </div>
 </template>
 
 <script>
+import Display from "../components/Display.vue";
 export default {
-  name: "Tablet"
+  name: "Tablet",
+  components: {
+    Display
+  }
 };
 </script>
 
@@ -94,7 +98,7 @@ $header-el-color: #ffffffbb;
       left: $tablet-height * -0.012;
       height: $tablet-height * 0.93;
       width: $tablet-height * 1.3;
-      background-color: #888888;
+      background-color: var(--bg-primary);
       overflow-y: hidden;
     }
   }
