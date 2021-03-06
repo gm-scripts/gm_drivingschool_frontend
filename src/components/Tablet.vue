@@ -16,6 +16,13 @@ export default {
   name: "Tablet",
   components: {
     Display
+  },
+  methods: {
+    closeReq() {
+      fetch(`${this.$store.getters.url}/close`, {
+        method: "post"
+      });
+    }
   }
 };
 </script>

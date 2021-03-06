@@ -5,7 +5,7 @@
     <div class="footer">
       <div class="progressbar-outer footer-item">
         <div
-          class="progressbar-inner footer-item"
+          class="progressbar-inner"
           :style="{
             '--progress': $store.getters.progress
           }"
@@ -13,7 +13,7 @@
       </div>
       <div class="wrong-indicator footer-item">{{ $store.getters.wrong }}</div>
       <div class="right-indicator footer-item">{{ $store.getters.right }}</div>
-      <div class="next-btn footer-item">
+      <div @click="goToNextPage" class="next-btn footer-item">
         <span id="next-btn-label">{{ $store.getters.nextBtnLabel }}</span>
       </div>
     </div>
@@ -21,7 +21,14 @@
 </template>
 <script>
 export default {
-  name: "Display"
+  name: "Display",
+  methods: {
+    goToNextPage() {
+      postMessage({
+        type: "nextButtonPressedBroadcast"
+      });
+    }
+  }
 };
 </script>
 <style lang="scss">
@@ -59,6 +66,7 @@ export default {
       background-color: var(--bg-secondary);
       .progressbar-inner {
         --progress: 1;
+        border-radius: 1.5vh;
         width: calc(3vh + (68.75vh * var(--progress)));
         transition: linear width 0.3s;
         background-color: var(--color-primary);
@@ -73,6 +81,10 @@ export default {
     }
     .right-indicator {
       background-color: var(--color-correct);
+    }
+    .wrong-indicator,
+    .right-indicator {
+      line-height: 4.5vh;
     }
     .next-btn {
       border: 0.3vh solid var(--color-primary);

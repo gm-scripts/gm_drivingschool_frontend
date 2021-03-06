@@ -72,5 +72,6 @@ html {
 
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 </style>

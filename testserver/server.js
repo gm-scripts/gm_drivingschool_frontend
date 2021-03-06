@@ -23,16 +23,6 @@ let passed = () => {
   return r >= failAt;
 };
 
-app.post("/quiz-start", (req, res) => {
-  console.log("'quiz-start' received.");
-  res.json({
-    question: questions[openQuestion],
-    progress: 1 / (questions.length + 1)
-  });
-  openQuestion++;
-  res.end();
-});
-
 app.post("/question", (req, res) => {
   let data = req.body;
   /*
@@ -43,11 +33,14 @@ app.post("/question", (req, res) => {
   answerIsCorrect indicates if the previous question was correct or not.
 */
   console.log(data);
-  results.push(data.answerIsCorrect);
+  if (data.answerIsCorrect !== null) {
+    results.push(data.answerIsCorrect);
+  }
   console.log(results);
   res.json({
     question: questions[openQuestion],
-    progress: 1 / (questions.length + 1),
+    questionIndex: openQuestion,
+    progress: openQuestion / questions.length,
     last: openQuestion === questions.length - 1
   });
   openQuestion++;
@@ -82,12 +75,33 @@ app.post("/close", (/* req, res */) => {
 // Now the getters for config and lang
 //
 let config = JSON.parse(fs.readFileSync("testserver/config.json"));
-// let lang = JSON.parse(fs.readFileSync("testserver/lang.json"));
-app.get("/config/colors", (/*req, */ res) => {
-  console.log("GET to /config/colors received. Sending color values.");
+let lang = JSON.parse(fs.readFileSync("testserver/lang.json"));
+app.get("/config/colors", (req, res) => {
+  console.log("GET to /config/colors received.");
   res.json(config.colors);
   res.end();
-  console.log("Sent color values.");
+});
+
+app.get("/lang/welcome", (req, res) => {
+  console.log("GET to /lang/welcome received.");
+  res.json(lang.welcome);
+  res.end();
+});
+
+app.get("/lang/failed", (req, res) => {
+  console.log("GET to /lang/failed received.");
+  res.json(lang.failed);
+  res.end();
+});
+app.get("/lang/passed", (req, res) => {
+  console.log("GET to /lang/passed received.");
+  res.json(lang.passed);
+  res.end();
+});
+app.get("/lang/test", (req, res) => {
+  console.log("GET to /lang/test received.");
+  res.json(lang.test);
+  res.end();
 });
 
 app.listen(3000, () => console.log("Testserver ready."));

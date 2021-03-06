@@ -1,1 +1,34 @@
-{}
+{
+  "welcome": {
+    "header": "Willkommen in der Fahrschule!",
+    "title": "Die Theoretische Fahrprüfung",
+    "paragraphs": [
+      "Ohne die Theoretische Fahrprüfung darf man in diesem Land nicht Autofahren. Hier kannst du sie Ablegen.",
+      "Dir werden Sechs verschiedene Fragen gestellt werden, welche du zu mindestens Fünfzig Prozent korrekt beantworten musst, um zu bestehen. Wenn du bestehst, erhältst du einen Führerschein.",
+      "Um zu beginnen, klicke auf den 'Beginnen'-Knopf. \n Viel Glück!"
+    ],
+    "nextButtonLabel": "Beginnen",
+    "nextPage": "/test"
+  },
+  "test": {
+    "nextButtonLabel": "Weiter"
+  },
+  "failed": {
+    "header": "Gescheitert",
+    "title": "Du hast die Prüfung nicht bestanden!",
+    "paragraphs": [
+      "Du kannst die Prüfung erneut versuchen.",
+      "Viel glück bei nächsten mal!",
+      "Um das Fenster zu schließen, drücke auf den Home Button oder auf 'Schließen'."
+    ],
+    "nextButtonLabel": "Schließen"},
+  "passed": {
+    "header": "Bestanden",
+    "title": "Du hast die theoretische Fahrprüfung bestanden!",
+    "paragraphs": [
+      "Du darfst nun Autofahren!",
+      "Pass nur auf, dass du keine der Verkehrsregeln brichst.",
+      "Um das Fenster zu schließen, drücke auf den Home Button oder auf 'Schließen'."
+    ],
+    "nextButtonLabel": "Schließen"}
+}
