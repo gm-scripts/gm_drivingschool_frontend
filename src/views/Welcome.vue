@@ -14,7 +14,9 @@ export default {
     };
   },
   mounted() {
-    fetch(`${this.$store.getters.url}/lang/welcome`)
+    fetch(`${this.$store.getters.url}/lang/welcome`, {
+      method: "post"
+    })
       .then(res => res.json())
       .then(data => {
         this.heading = data.title;

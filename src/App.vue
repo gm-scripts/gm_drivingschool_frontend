@@ -38,7 +38,9 @@ export default {
     Tablet
   },
   mounted() {
-    fetch(`${this.$store.getters.url}/config/colors`)
+    fetch(`${this.$store.getters.url}/config/colors`, {
+      method: "post"
+    })
       .then(res => res.json())
       .then(data => (this.colors = data));
   }
@@ -60,7 +62,7 @@ export default {
 body,
 html {
   //DEV
-  background-color: #333333;
+  // background-color: #333333;
 
   margin: 0;
   padding: 0;

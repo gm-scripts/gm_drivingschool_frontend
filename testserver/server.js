@@ -76,29 +76,29 @@ app.post("/close", (/* req, res */) => {
 //
 let config = JSON.parse(fs.readFileSync("testserver/config.json"));
 let lang = JSON.parse(fs.readFileSync("testserver/lang.json"));
-app.get("/config/colors", (req, res) => {
+app.post("/config/colors", (req, res) => {
   console.log("GET to /config/colors received.");
   res.json(config.colors);
   res.end();
 });
 
-app.get("/lang/welcome", (req, res) => {
+app.post("/lang/welcome", (req, res) => {
   console.log("GET to /lang/welcome received.");
   res.json(lang.welcome);
   res.end();
 });
 
-app.get("/lang/failed", (req, res) => {
+app.post("/lang/failed", (req, res) => {
   console.log("GET to /lang/failed received.");
   res.json(lang.failed);
   res.end();
 });
-app.get("/lang/passed", (req, res) => {
+app.post("/lang/passed", (req, res) => {
   console.log("GET to /lang/passed received.");
   res.json(lang.passed);
   res.end();
 });
-app.get("/lang/test", (req, res) => {
+app.post("/lang/test", (req, res) => {
   console.log("GET to /lang/test received.");
   res.json(lang.test);
   res.end();

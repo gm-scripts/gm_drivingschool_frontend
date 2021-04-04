@@ -77,7 +77,9 @@ export default {
     }
   },
   mounted() {
-    fetch(`${this.$store.getters.url}/lang/test`)
+    fetch(`${this.$store.getters.url}/lang/test`, {
+      method: "post"
+    })
       .then(res => res.json())
       .then(data => {
         this.$store.commit("changeNextBtnLabel", data.nextButtonLabel);

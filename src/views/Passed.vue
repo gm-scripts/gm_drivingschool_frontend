@@ -17,7 +17,9 @@ export default {
     };
   },
   created() {
-    fetch(`${this.$store.getters.url}/lang/passed`)
+    fetch(`${this.$store.getters.url}/lang/passed`, {
+      method: "post"
+    })
       .then(res => res.json())
       .then(data => {
         this.heading = data.title;

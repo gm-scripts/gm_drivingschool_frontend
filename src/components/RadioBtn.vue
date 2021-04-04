@@ -35,7 +35,7 @@ $size: 3vh;
 
     border: $size / 6 solid var(--color-secondary);
 
-    transform: scale(1.01) translateY(0);
+    transform: scale(1.001) translateY(0);
     transition: linear transform 0.1s, border 0.1s;
     display: inline-block;
     position: relative;
