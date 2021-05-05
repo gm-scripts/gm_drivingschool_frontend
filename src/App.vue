@@ -70,6 +70,7 @@ html {
   place-items: center;
   height: 100vh;
   width: 100vw;
+  perspective: 250vh;
 }
 
 * {

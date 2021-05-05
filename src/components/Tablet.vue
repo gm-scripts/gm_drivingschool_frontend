@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div id="frame">
+    <div id="frame" :class="{ closed: closed }">
       <div id="home-btn"></div>
       <div id="camera-outer">
         <div id="camera-inner"></div>
@@ -14,15 +14,37 @@
 import Display from "../components/Display.vue";
 export default {
   name: "Tablet",
+  data() {
+    return {
+      closed: false
+    };
+  },
   components: {
     Display
   },
   methods: {
-    closeReq() {
+    close() {
+      this.closed = true;
       fetch(`${this.$store.getters.url}/close`, {
         method: "post"
       });
+    },
+    open() {
+      this.closed = false;
     }
+  },
+  mounted() {
+    window.addEventListener("message", e => {
+      let dat = e.data;
+      switch (dat.type) {
+        case "gm_open_dschool":
+          this.open();
+          break;
+        case "gm_close_dschool":
+          this.close();
+          break;
+      }
+    });
   }
 };
 </script>
@@ -75,7 +97,7 @@ $header-el-color: #ffffffbb;
     border-radius: 5vh;
     display: grid;
     place-items: center;
-
+    transition: transform 0.2, opacity 0.15s;
     #home-btn {
       @include casing($frame-color, 0.3vh, 5, true);
       background-color: $frame-color;
@@ -107,6 +129,12 @@ $header-el-color: #ffffffbb;
       width: $tablet-height * 1.3;
       background-color: var(--bg-primary);
       overflow-y: hidden;
+    }
+    transform: rotate3d(1, 0, 0, 0deg) translateY(0) scale(1);
+    &.closed {
+      opacity: 0;
+      transform: rotate3d(1, 0, 0, 45deg) translateY(30vh) scale(0.8);
+      transition: transform 1s, opacity 1s;
     }
   }
 }

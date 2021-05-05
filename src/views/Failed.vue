@@ -36,6 +36,7 @@ export default {
         fetch(`${this.$store.getters.url}/close`, {
           method: "post"
         });
+        postMessage({ type: "gm_close_dschool" });
       }
     });
   }
