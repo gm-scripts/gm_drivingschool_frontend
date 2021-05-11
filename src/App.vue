@@ -13,6 +13,22 @@
     }"
   >
     <Tablet></Tablet>
+    <div class="popup" :class="{ hidden: popupHidden }">
+      <div class="header">Wähle deine Prüfung.</div>
+      <div class="content-container">
+        <div class="buttongrid">
+          <div
+            class="button"
+            v-for="btn in buttons"
+            :key="btn.id"
+            @click="choose(btn.id, btn.complete)"
+            :class="{ complete: btn.complete }"
+          >
+            {{ btn.label }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,11 +47,33 @@ export default {
         colorFalse: "darkred",
         textPrimary: "white",
         textSecondary: "whitesmoke"
-      }
+      },
+      popupHidden: false,
+      buttons: []
     };
   },
   components: {
     Tablet
+  },
+  methods: {
+    choose(index, alreadyComplete) {
+      if (alreadyComplete) {
+        return;
+      }
+      fetch(`${this.$store.getters.url}/choose`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          index: index
+        })
+      });
+      postMessage({
+        type: "gm_drivingschool_popup",
+        closed: true
+      });
+    }
   },
   mounted() {
     fetch(`${this.$store.getters.url}/config/colors`, {
@@ -43,6 +81,16 @@ export default {
     })
       .then(res => res.json())
       .then(data => (this.colors = data));
+    fetch(`${this.$store.getters.url}/exams`, { method: "post" })
+      .then(res => res.json())
+      .then(data => (this.buttons = data));
+    window.addEventListener("message", e => {
+      let data = e.data;
+      switch (data.type) {
+        case "gm_drivingschool_popup":
+          this.popupHidden = data.closed;
+      }
+    });
   }
 };
 </script>
@@ -57,12 +105,67 @@ export default {
   --color-false: darkred;
   --text-primary: white;
   --text-secondary: whitesmoke;
+
+  .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // height: 50vh;
+    width: 40vh;
+    border-radius: 2vh;
+    background-color: var(--bg-primary);
+    overflow: hidden;
+    &.hidden {
+      transform: translate(-50%, -50%) scale(1.15);
+      opacity: 0;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    transition: transform 0.25s, opacity 0.25s;
+
+    font-family: Avenir, Arial, Helvetica, sans-serif;
+    .header {
+      font-size: 2.5vh;
+      padding: 1.5vh;
+      color: var(--text-primary);
+      text-align: center;
+      background-color: var(--bg-secondary);
+    }
+    .content-container {
+      color: var(--text-secondary);
+      .buttongrid {
+        display: flex;
+        flex-direction: column;
+        $gap: 3.25vh;
+        padding: $gap;
+        gap: $gap;
+        .button {
+          font-size: 2.2vh;
+          padding: 0.5vh 1vh;
+          border: 0.4vh solid var(--color-primary);
+          border-radius: 50vh;
+          transition: background-color 0.25s;
+          text-align: center;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--color-primary);
+            transition: background-color 0.15s;
+          }
+          &.complete {
+            filter: grayscale(1);
+            background-color: var(--color-secondary);
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
 }
 
 body,
 html {
   //DEV
-  // background-color: #333333;
+  background-color: #333333;
 
   margin: 0;
   padding: 0;

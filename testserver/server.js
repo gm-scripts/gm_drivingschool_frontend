@@ -82,6 +82,36 @@ app.post("/config/colors", (req, res) => {
   res.end();
 });
 
+app.post("/exams", (req, res) => {
+  res.json([
+    {
+      label: "Bike",
+      id: 0,
+      complete: true
+    },
+    {
+      label: "Traktor",
+      id: 1,
+      complete: false
+    },
+    {
+      label: "Auto",
+      id: 2,
+      complete: false
+    },
+    {
+      label: "LKW",
+      id: 3,
+      complete: true
+    },
+    {
+      label: "Panzer",
+      id: 4,
+      complete: false
+    }
+  ]);
+});
+
 app.post("/lang/welcome", (req, res) => {
   console.log("GET to /lang/welcome received.");
   res.json(lang.welcome);

@@ -16,7 +16,7 @@ export default {
   name: "Tablet",
   data() {
     return {
-      closed: false
+      closed: true
     };
   },
   components: {
