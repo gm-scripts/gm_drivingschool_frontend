@@ -25,15 +25,21 @@ export default {
         this.$store.commit("changeNextBtnLabel", data.nextButtonLabel);
         this.$store.commit("nextPage", data.nextPage);
       });
-    window.addEventListener("message", e => {
+    let msgListener = e => {
       let data = e.data;
       switch (data.type) {
         case "nextButtonPressedBroadcast": {
           this.$router.push(this.$store.getters.nextPage);
+          window.removeEventListener("message", msgListener);
+          console.log(
+            "%cthis only should appear once",
+            "color:red;background-color:blue"
+          );
           break;
         }
       }
-    });
+    };
+    window.addEventListener("message", msgListener);
   }
 };
 </script>
