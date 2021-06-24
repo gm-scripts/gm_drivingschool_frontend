@@ -62,7 +62,6 @@ export default {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           this.question = data.question.question;
           this.questionIndex = data.questionIndex;
           this.responseOptions[0].data = data.question.a;
@@ -87,11 +86,9 @@ export default {
     this.fetchQuestion(null);
     let thisListener = window.addEventListener("message", e => {
       let data = e.data;
-      console.log(data);
       switch (data.type) {
         case "radioGroupSelectionBroadcast": {
           this.correct = data.buttonSelected === this.correctAnswer;
-          console.log(data.buttonSelected, this.correctAnswer);
           break;
         }
         case "nextButtonPressedBroadcast": {
@@ -101,7 +98,6 @@ export default {
             this.$store.commit("incStatusWrong");
           }
           if (this.last) {
-            console.log("last");
             window.removeEventListener("message", thisListener);
             fetch(`${this.$store.getters.url}/get-results`, {
               method: "post",
