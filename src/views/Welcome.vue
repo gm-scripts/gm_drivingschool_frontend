@@ -31,10 +31,6 @@ export default {
         case "nextButtonPressedBroadcast": {
           this.$router.push(this.$store.getters.nextPage);
           window.removeEventListener("message", msgListener);
-          console.log(
-            "%cthis only should appear once",
-            "color:red;background-color:blue"
-          );
           break;
         }
       }

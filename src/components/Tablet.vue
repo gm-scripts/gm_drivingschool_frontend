@@ -137,6 +137,11 @@ $header-el-color: #ffffffbb;
       transform: rotate3d(1, 0, 0, 45deg) translateY(30vh) scale(0.8);
       transition: transform 1s, opacity 1s;
     }
+    &:not(.closed) {
+      opacity: 1;
+      transform: rotate3d(1, 0, 0, 0deg) translateY(0vh) scale(1);
+      transition: transform 1s, opacity 0.5s;
+    }
   }
 }
 </style>

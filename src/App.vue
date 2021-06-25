@@ -48,7 +48,7 @@ export default {
         textPrimary: "white",
         textSecondary: "whitesmoke"
       },
-      popupHidden: false,
+      popupHidden: true,
       buttons: []
     };
   },
@@ -165,7 +165,7 @@ export default {
 body,
 html {
   //DEV
-  background-color: #333333;
+  //background-color: #333333;
 
   margin: 0;
   padding: 0;

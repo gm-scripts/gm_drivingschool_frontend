@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    serverUrl: "http://localhost:3000",
+    serverUrl: "https://gm_drivingschool",
     // in production https://gm_drivingschool,
     // in dev http://localhost:3000
     header: "Hello, World!",
