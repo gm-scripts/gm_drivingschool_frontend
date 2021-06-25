@@ -85,7 +85,7 @@ export default {
         this.$store.commit("changeNextBtnLabel", data.nextButtonLabel);
       });
     this.fetchQuestion(null);
-    let thisListener = window.addEventListener("message", e => {
+    let thisListener = e => {
       let data = e.data;
       console.log(data);
       switch (data.type) {
@@ -127,7 +127,8 @@ export default {
           break;
         }
       }
-    });
+    };
+    window.addEventListener("message", thisListener);
   }
 };
 </script>

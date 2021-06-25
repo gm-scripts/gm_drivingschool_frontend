@@ -29,16 +29,18 @@ export default {
         this.$store.commit("nextPage", data.nextPage);
       });
     this.$store.commit("updateProgress", 1);
-
-    window.addEventListener("message", e => {
+    let msgListener = e => {
       let data = e.data;
       if (data.type === "nextButtonPressedBroadcast") {
         fetch(`${this.$store.getters.url}/close`, {
           method: "post"
         });
         postMessage({ type: "gm_close_dschool" });
+        this.$router.push("/");
+        window.removeEventListener("message", msgListener);
       }
-    });
+    };
+    window.addEventListener("message", msgListener);
   }
 };
 </script>

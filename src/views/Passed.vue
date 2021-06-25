@@ -30,7 +30,7 @@ export default {
       });
     this.$store.commit("updateProgress", 1);
 
-    window.addEventListener("message", e => {
+    let msgListener = e => {
       let data = e.data;
       if (data.type === "nextButtonPressedBroadcast") {
         fetch(`${this.$store.getters.url}/close`, {
@@ -39,7 +39,8 @@ export default {
 
         postMessage({ type: "gm_close_dschool" });
       }
-    });
+    };
+    window.addEventListener("message", msgListener);
   }
 };
 </script>

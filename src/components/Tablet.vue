@@ -28,6 +28,7 @@ export default {
       fetch(`${this.$store.getters.url}/close`, {
         method: "post"
       });
+      this.$store.commit("resetStore");
     },
     open() {
       this.closed = false;

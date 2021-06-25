@@ -20,9 +20,18 @@ export default createStore({
     nextPage: (state, value) => (state.nextPage = value),
     updateProgress: (state, value) => (state.progress = value),
     incStatusCorrect: state => state.status.correct++,
-    incStatusWrong: state => state.status.wrong++
+    incStatusWrong: state => state.status.wrong++,
+    resetStore: state => {
+      state.header = "";
+      state.nextBtnLabel = "";
+      state.nextPage = "/";
+      state.progress = 0;
+      state.status = {
+        correct: 0,
+        wrong: 0
+      };
+    }
   },
-  actions: {},
   getters: {
     url: state => state.serverUrl,
     header: state => state.header,
