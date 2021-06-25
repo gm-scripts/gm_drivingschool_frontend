@@ -137,11 +137,13 @@ $header-el-color: #ffffffbb;
       transform: rotate3d(1, 0, 0, 45deg) translateY(30vh) scale(0.8);
       transition: transform 1s, opacity 1s;
     }
-    &:not(.closed) {
-      opacity: 1;
-      transform: rotate3d(1, 0, 0, 0deg) translateY(0vh) scale(1);
-      transition: transform 1s, opacity 0.5s;
-    }
+
+    // du realisierst das du hier eh beide cases coverst, also das der das
+    // entweder hat oder nicht hat. Ausserdem wurde der transform schon auf
+    // zeile 134 resettet und muss deswegen hier nicht auch noch resettet
+    // werden, das gleiche gilt für die opacity welche standartmäßig auf 1 ist.
+    // du hättest nur die transition setzen müssen.
+    transition: transform 1s, opacity 0.5s;
   }
 }
 </style>
