@@ -143,6 +143,8 @@ $header-el-color: #ffffffbb;
     // zeile 134 resettet und muss deswegen hier nicht auch noch resettet
     // werden, das gleiche gilt für die opacity welche standartmäßig auf 1 ist.
     // du hättest nur die transition setzen müssen.
+
+    // ok lol
     transition: transform 1s, opacity 0.5s;
   }
 }
