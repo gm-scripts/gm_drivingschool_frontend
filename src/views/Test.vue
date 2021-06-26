@@ -1,6 +1,8 @@
 <template>
-  <div class="test">
+  <div class="question-div">
     <h2 class="question">{{ question }}</h2>
+  </div>
+  <div class="test">
     <img
       :src="`./img/${questionIndex + 1}.png`"
       :alt="`./img/${questionIndex + 1}.png not found`"
@@ -129,8 +131,21 @@ export default {
 };
 </script>
 <style lang="scss">
+.question-div {
+  height: 15vh;
+  position: relative;
+  .question {
+    padding-left: 5vh;
+    padding-right: 5vh;
+    margin: 0vh;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
 .test {
   padding: 5vh;
+  padding-top: 0vh;
   .demo-img {
     height: 50vh;
     width: 62.5vh;
