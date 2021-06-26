@@ -117,6 +117,7 @@ export default {
     background-color: var(--bg-primary);
     overflow: hidden;
     &.hidden {
+      pointer-events: none;
       transform: translate(-50%, -50%) scale(1.15);
       opacity: 0;
       transition: transform 0.2s, opacity 0.2s;
