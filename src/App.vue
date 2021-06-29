@@ -90,6 +90,17 @@ export default {
         case "gm_drivingschool_popup":
           this.popupHidden = data.closed;
       }
+      fetch(`${this.$store.getters.url}/exams`, { method: "post" })
+        .then(res => res.json())
+        .then(data => (this.buttons = data));
+    });
+    window.addEventListener("keydown", e => {
+      if (e.keyCode === 27) {
+        this.popupHidden = true;
+        fetch(`${this.$store.getters.url}/close`, {
+          method: "post"
+        });
+      }
     });
   }
 };
