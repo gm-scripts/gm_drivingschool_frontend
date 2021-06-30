@@ -21,7 +21,7 @@
             class="button"
             v-for="btn in buttons"
             :key="btn.id"
-            @click="choose(btn.id, btn.complete)"
+            @click="choose(btn.label, btn.complete)"
             :class="{ complete: btn.complete }"
           >
             {{ btn.label }}
