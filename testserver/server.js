@@ -87,27 +87,32 @@ app.post("/exams", (req, res) => {
     {
       label: "Bike",
       id: 0,
-      complete: true
+      complete: true,
+      price: "5$"
     },
     {
       label: "Traktor",
       id: 1,
-      complete: false
+      complete: false,
+      price: "50$"
     },
     {
       label: "Auto",
       id: 2,
-      complete: false
+      complete: false,
+      price: "20$"
     },
     {
       label: "LKW",
       id: 3,
-      complete: true
+      complete: true,
+      price: "40$"
     },
     {
       label: "Panzer",
       id: 4,
-      complete: false
+      complete: false,
+      price: "200$"
     }
   ]);
 });

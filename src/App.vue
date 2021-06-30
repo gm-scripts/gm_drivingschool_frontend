@@ -25,6 +25,7 @@
             :class="{ complete: btn.complete }"
           >
             {{ btn.label }}
+            <span class="pricesign">{{ btn.price }}</span>
           </div>
         </div>
       </div>
@@ -157,8 +158,12 @@ export default {
           border: 0.4vh solid var(--color-primary);
           border-radius: 50vh;
           transition: background-color 0.25s;
-          text-align: center;
+          text-align: left;
           cursor: pointer;
+          .pricesign {
+            display: inline-block;
+            float: right;
+          }
           &:hover {
             background-color: var(--color-primary);
             transition: background-color 0.15s;
