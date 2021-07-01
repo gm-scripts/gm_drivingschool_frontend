@@ -97,10 +97,12 @@ export default {
     });
     window.addEventListener("keydown", e => {
       if (e.keyCode === 27) {
-        this.popupHidden = true;
-        fetch(`${this.$store.getters.url}/close`, {
-          method: "post"
-        });
+        if (!this.popupHidden) {
+          this.popupHidden = true;
+          fetch(`${this.$store.getters.url}/close`, {
+            method: "post"
+          });
+        }
       }
     });
   }
