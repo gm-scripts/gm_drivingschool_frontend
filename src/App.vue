@@ -14,7 +14,7 @@
   >
     <Tablet></Tablet>
     <div class="popup" :class="{ hidden: popupHidden }">
-      <div class="header">Wähle deine Prüfung.</div>
+      <div class="header">{{ popupTitle }}</div>
       <div class="content-container">
         <div class="buttongrid">
           <div
@@ -50,6 +50,7 @@ export default {
         textSecondary: "whitesmoke"
       },
       popupHidden: true,
+      popupTitle: "Wähle deine Prüfung",
       buttons: []
     };
   },
@@ -77,6 +78,11 @@ export default {
     }
   },
   mounted() {
+    fetch(`${this.$store.getters.url}/lang/popuptitle`, {
+      method: "post"
+    })
+      .then(res => res.json())
+      .then(data => (this.popupTitle = data.title));
     fetch(`${this.$store.getters.url}/config/colors`, {
       method: "post"
     })
