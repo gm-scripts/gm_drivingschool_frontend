@@ -21,7 +21,7 @@
             class="button"
             v-for="btn in buttons"
             :key="btn.id"
-            @click="choose(btn.id, btn.complete)"
+            @click="choose(btn.label, btn.complete)"
             :class="{ complete: btn.complete }"
           >
             {{ btn.label }}
@@ -103,10 +103,12 @@ export default {
     });
     window.addEventListener("keydown", e => {
       if (e.keyCode === 27) {
-        this.popupHidden = true;
-        fetch(`${this.$store.getters.url}/close`, {
-          method: "post"
-        });
+        if (!this.popupHidden) {
+          this.popupHidden = true;
+          fetch(`${this.$store.getters.url}/close`, {
+            method: "post"
+          });
+        }
       }
     });
   }
